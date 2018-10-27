@@ -1,0 +1,58 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+
+<head id="head">
+  <meta name="author" content="Katja Berlin" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, orientation">
+  <title>Hannibal Lector's Cloud Access</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="question-text">
+
+  <!-- TODO: Make the total number of questions a parameter. -->
+  <h2>Security Question {{ question_number }}/9</h2>
+
+{% if answer_provided %}
+  {% if correct %}
+  <p class="paragraph-text">{{ question|safe }}</p>
+  <p class="right">
+    <img src="{{ url_for('static', filename='correct.png') }}" alt="correct" width="30%" align="middle">
+    your answer: {{ answer_submitted }}
+  </p>
+  <form action="/question/{{ next_question_number }}">
+  	<input type="submit" value="Next">
+  </form>
+  {% else %}
+  <p class="paragraph-text">{{ question|safe }}
+  <p class="wrong">
+    <img src="{{ url_for('static', filename='incorrect.png') }}" alt="incorrect" width="30%" align="middle">
+    your answer: {{ answer_submitted }}
+  </p>
+  <form method="POST">
+    <input type="{{ answer_type }}" name="question1_answer" autocomplete="off" autocapitalize="on" autocorrect="off" spellcheck="false">
+    <input type="submit" value="Send" name="question1_send">
+  </form>
+  {% endif %}
+{% else %}
+  <p class="paragraph-text">{{ question|safe }}</p>
+  <form method="POST">
+    <input type="{{ answer_type }}" name="question1_answer" value="{{ known_answer }}" autocomplete="off" autocapitalize="on" autocorrect="off" spellcheck="false">
+    <input type="submit" value="Send" name="question1_send">
+  </form>
+
+{% endif %}
+
+  <p><br/></p>
+
+  <form action="/status">
+    <input type="submit" value="Status page">
+  </form>
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+
+<head id="head">
+  <meta name="author" content="Katja Berlin" />
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, orientation">
+  <title>Hannibal Lector's Cloud Access</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="start-text">
+	<h1> Welcome, Hannibal! </h1>
+	<p class="paragraph-text">
+    It seems you have forgotten your password.<br/>
+    <br/>
+		Not a problem! Just answer the following security questions and you will soon have access again!
+  </p>
+	<form action="/question/1">
+		<input type="submit" value="OK">
+	</form>
+	<p>
+    <b>Hint:</b> Take note, you will need to find a key for your diary!
+  </p>
+</div>
+
+</body>
+
+</html>

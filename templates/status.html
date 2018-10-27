@@ -1,0 +1,44 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+
+<head id="head">
+    <meta name="author" content="Katja Berlin" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, orientation">
+    <title>Hannibal Lector's Cloud Access</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="error-text">
+
+  <p class="error-text">
+  <h1> Status </h1>
+{% for number, question_status in all_questions.items() %}
+  <p class="paragraph-text">
+  {% if question_status.unlocked %}
+    <a href="/question/{{ number }}">{{ question_status.description }}:</a>
+      {% if question_status.solved %}
+        <img src="{{ url_for('static', filename='correct.png') }}" alt="correct" width="8%">
+      {% else %}
+        <img src="{{ url_for('static', filename='incorrect.png') }}" alt="incorrect" width="8%">
+      {% endif %}
+    {% else %}
+      {{ question_status.description }}: <img src="{{ url_for('static', filename='incorrect.png') }}" alt="incorrect" width="8%">
+  {% endif %}
+    <br/>
+  </p>
+{% endfor %}
+
+{% if all_questions_solved %}
+  <form action="/thank_you">
+    <input type="submit" value="Thank You!">
+  </form>
+{% endif %}
+
+</div>
+
+</body>
+
+</html>
